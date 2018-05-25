@@ -1,0 +1,53 @@
+App\Entity\Resposta:
+    resposta_1:
+        descricao: Thor
+    resposta_2:
+        descricao: Hulk
+    resposta_3:
+        descricao: Capitão América
+    resposta_4:
+        descricao: Homem de Ferro
+    resposta_5:
+        descricao: Gavião Arqueiro
+
+    resposta_6:
+        descricao: Tessecrat
+    resposta_7:
+        descricao: Tesseclat
+    resposta_8:
+        descricao: Tesseract
+    resposta_9:
+        descricao: Tessecart
+    resposta_10:
+        descricao: Terceraico
+
+    resposta_11:
+        descricao: Nick Firy
+    resposta_12:
+        descricao: Nick Fury
+    resposta_13:
+        descricao: Nick Fary
+    resposta_14:
+        descricao: Nick Fory
+    resposta_15:
+        descricao: Nick Lodeon
+
+    resposta_16:
+        descricao: Mulher Hulk e Wolverine
+    resposta_17:
+        descricao: Ciclope e Thor
+    resposta_18:
+        descricao: Colossus e Batman
+    resposta_19:
+        descricao: Mulher Aranha e Fênix
+    resposta_20:
+        descricao: Batman e Megamen
+
+    resposta_21:
+        descricao: The Avengers
+    resposta_22:
+        descricao: Los Vingadores
+    resposta_23:
+        descricao: The Vingators
+    resposta_24:
+        descricao: The Vingathors

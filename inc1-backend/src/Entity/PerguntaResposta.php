@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -18,10 +19,11 @@ class PerguntaResposta
     private $id;
 
     /**
-     * @var PerguntaResposta
+     * @var Pergunta
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\Pergunta", inversedBy="perguntaRespostas")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotNull()
      */
     private $pergunta;
 
@@ -30,6 +32,7 @@ class PerguntaResposta
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\Resposta")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotNull()
      */
     private $resposta;
 
@@ -38,7 +41,7 @@ class PerguntaResposta
      *
      * @ORM\Column(type="boolean")
      */
-    private $correta;
+    private $correta = false;
 
     /**
      * @return mixed
@@ -59,18 +62,18 @@ class PerguntaResposta
     }
 
     /**
-     * @return PerguntaResposta
+     * @return Pergunta
      */
-    public function getPergunta(): PerguntaResposta
+    public function getPergunta(): Pergunta
     {
         return $this->pergunta;
     }
 
     /**
-     * @param PerguntaResposta $pergunta
+     * @param Pergunta $pergunta
      * @return PerguntaResposta
      */
-    public function setPergunta(PerguntaResposta $pergunta): PerguntaResposta
+    public function setPergunta(Pergunta $pergunta): PerguntaResposta
     {
         $this->pergunta = $pergunta;
         return $this;

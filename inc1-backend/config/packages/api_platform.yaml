@@ -1,3 +1,16 @@
 api_platform:
+    title: '%api_platform.title%'
+    description: '%api_platform.description%'
+    path_segment_name_generator: api_platform.path_segment_name_generator.dash
     mapping:
         paths: ['%kernel.project_dir%/src/Entity']
+    collection:
+        pagination:
+            items_per_page: 10 # Default value
+            client_items_per_page: true # Disabled by default
+            items_per_page_parameter_name: itemsPerPage # Default value
+    swagger:
+        api_keys:
+            apiKey:
+              name: Authorization
+              type: header

@@ -1,0 +1,101 @@
+App\Entity\PerguntaResposta:
+    pergunta_resposta_1:
+        pergunta: '@pergunta_1'
+        resposta: '@resposta_1'
+        correta: false
+    pergunta_resposta_2:
+        pergunta: '@pergunta_1'
+        resposta: '@resposta_3'
+        correta: false
+    pergunta_resposta_3:
+        pergunta: '@pergunta_1'
+        resposta: '@resposta_3'
+        correta: false
+    pergunta_resposta_4:
+        pergunta: '@pergunta_1'
+        resposta: '@resposta_4'
+        correta: true
+    pergunta_resposta_5:
+        pergunta: '@pergunta_1'
+        resposta: '@resposta_5'
+        correta: false
+        
+    pergunta_resposta_6:
+        pergunta: '@pergunta_2'
+        resposta: '@resposta_6'
+        correta: false
+    pergunta_resposta_7:
+        pergunta: '@pergunta_2'
+        resposta: '@resposta_7'
+        correta: false
+    pergunta_resposta_8:
+        pergunta: '@pergunta_2'
+        resposta: '@resposta_8'
+        correta: true
+    pergunta_resposta_9:
+        pergunta: '@pergunta_2'
+        resposta: '@resposta_9'
+        correta: false
+    pergunta_resposta_10:
+        pergunta: '@pergunta_2'
+        resposta: '@resposta_10'
+        correta: false
+        
+    pergunta_resposta_11:
+        pergunta: '@pergunta_3'
+        resposta: '@resposta_11'
+        correta: false
+    pergunta_resposta_12:
+        pergunta: '@pergunta_3'
+        resposta: '@resposta_12'
+        correta: true
+    pergunta_resposta_13:
+        pergunta: '@pergunta_3'
+        resposta: '@resposta_13'
+        correta: false
+    pergunta_resposta_14:
+        pergunta: '@pergunta_3'
+        resposta: '@resposta_14'
+        correta: false
+    pergunta_resposta_15:
+        pergunta: '@pergunta_3'
+        resposta: '@resposta_15'
+        correta: false
+
+    pergunta_resposta_16:
+        pergunta: '@pergunta_4'
+        resposta: '@resposta_16'
+        correta: false
+    pergunta_resposta_17:
+        pergunta: '@pergunta_4'
+        resposta: '@resposta_17'
+        correta: false
+    pergunta_resposta_18:
+        pergunta: '@pergunta_4'
+        resposta: '@resposta_18'
+        correta: false
+    pergunta_resposta_19:
+        pergunta: '@pergunta_4'
+        resposta: '@resposta_19'
+        correta: false
+    pergunta_resposta_20:
+        pergunta: '@pergunta_4'
+        resposta: '@resposta_20'
+        correta: true
+        
+    pergunta_resposta_21:
+        pergunta: '@pergunta_5'
+        resposta: '@resposta_21'
+        correta: true
+    pergunta_resposta_22:
+        pergunta: '@pergunta_5'
+        resposta: '@resposta_22'
+        correta: false
+    pergunta_resposta_23:
+        pergunta: '@pergunta_5'
+        resposta: '@resposta_23'
+        correta: false
+    pergunta_resposta_24:
+        pergunta: '@pergunta_5'
+        resposta: '@resposta_24'
+        correta: false

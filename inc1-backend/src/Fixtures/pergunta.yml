@@ -1,0 +1,21 @@
+App\Entity\Pergunta:
+    pergunta_1:
+        descricao: Qual dos heróis não possui coração?
+    pergunta_2:
+        descricao: Como se chama o cubo precioso do filme?
+    pergunta_3:
+        descricao: Como se chama o diretor da SHIELD?
+    pergunta_4:
+        descricao: Quais desses heróis não fazem parte da Marvel?
+    pergunta_5:
+        descricao: Qual é o título do filme em inglês?
+#    pergunta_6:
+#        descricao: Quais são os objetos que Thor, Capitão América, Gavião Arqueiro e Homem de Ferro usam?
+#    pergunta_7:
+#        descricao: Qual é a cor do traje da Viuva Negra?
+#    pergunta_8:
+#        descricao: Quais desses personagens voam?
+#    pergunta_9:
+#        descricao: Qual é o nome da raça alieniginea que é comandada por Loki?
+#    pergunta_10:
+#        descricao: Quem é irmão de Loki?
