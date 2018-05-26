@@ -1,0 +1,5 @@
+App\Entity\Questionario:
+    questionario_1:
+        descricao: Vingadores I
+        pontuacaoTotal: 250
+        tempo: 300

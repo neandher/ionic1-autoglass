@@ -3,13 +3,17 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ApiResource()
+ * @ApiResource(attributes={
+ *     "normalization_context"={"groups"={"pergunta"}}
+ * })
  * @ORM\Entity(repositoryClass="App\Repository\PerguntaRepository")
  */
 class Pergunta
@@ -23,17 +27,71 @@ class Pergunta
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"pergunta"})
      * @Assert\NotBlank()
      */
     private $descricao;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(type="integer")
+     * @Groups({"pergunta"})
+     * @Assert\NotBlank()
+     */
+    private $pontuacao;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string")
+     * @Groups({"pergunta"})
+     * @Assert\NotBlank()
+     */
+    private $dica;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(type="boolean")
+     * @Groups({"pergunta"})
+     */
+    private $respondida = false;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(type="boolean")
+     * @Groups({"pergunta"})
+     */
+    private $acertou = false;
+
+    /**
      * @var PerguntaResposta
      *
      * @ORM\OneToMany(targetEntity="App\Entity\PerguntaResposta", mappedBy="pergunta", fetch="EXTRA_LAZY")
+     * @Groups({"pergunta"})
      * @Assert\Count(min="1")
      */
     private $perguntaRespostas;
+
+    /**
+     * @var Questionario
+     *
+     * @ORM\ManyToOne(targetEntity="App\Entity\Questionario", inversedBy="perguntas")
+     * @Groups({"pergunta"})
+     * @Assert\NotNull()
+     */
+    private $questionario;
+
+    /**
+     * @var Resposta
+     *
+     * @ORM\ManyToOne(targetEntity="App\Entity\Resposta")
+     * @Groups({"pergunta"})
+     * @Assert\NotNull()
+     */
+    private $resposta;
 
     /**
      * Pergunta constructor.
@@ -88,6 +146,114 @@ class Pergunta
             }
         }
 
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPontuacao(): int
+    {
+        return $this->pontuacao;
+    }
+
+    /**
+     * @param int $pontuacao
+     * @return Pergunta
+     */
+    public function setPontuacao(int $pontuacao): Pergunta
+    {
+        $this->pontuacao = $pontuacao;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDica(): string
+    {
+        return $this->dica;
+    }
+
+    /**
+     * @param string $dica
+     * @return Pergunta
+     */
+    public function setDica(string $dica): Pergunta
+    {
+        $this->dica = $dica;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isRespondida(): bool
+    {
+        return $this->respondida;
+    }
+
+    /**
+     * @param bool $respondida
+     * @return Pergunta
+     */
+    public function setRespondida(bool $respondida): Pergunta
+    {
+        $this->respondida = $respondida;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAcertou(): bool
+    {
+        return $this->acertou;
+    }
+
+    /**
+     * @param bool $acertou
+     * @return Pergunta
+     */
+    public function setAcertou(bool $acertou): Pergunta
+    {
+        $this->acertou = $acertou;
+        return $this;
+    }
+
+    /**
+     * @return Questionario
+     */
+    public function getQuestionario(): Questionario
+    {
+        return $this->questionario;
+    }
+
+    /**
+     * @param Questionario $questionario
+     * @return Pergunta
+     */
+    public function setQuestionario(Questionario $questionario): Pergunta
+    {
+        $this->questionario = $questionario;
+        return $this;
+    }
+
+    /**
+     * @return Resposta
+     */
+    public function getResposta(): Resposta
+    {
+        return $this->resposta;
+    }
+
+    /**
+     * @param Resposta $resposta
+     * @return Pergunta
+     */
+    public function setResposta(Resposta $resposta): Pergunta
+    {
+        $this->resposta = $resposta;
         return $this;
     }
 }

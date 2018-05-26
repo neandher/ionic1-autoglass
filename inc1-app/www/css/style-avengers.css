@@ -1,0 +1,134 @@
+/* Empty. Add your own CSS if you like */
+body, .scroll-content {
+  background-image: url('../img/bg.jpg');
+  background-size: 100%;
+}
+
+.item {
+  background: none;
+  border: none;
+}
+
+.item-content {
+  background: none !important;
+  background-color: rgba(237, 28, 36, 0.7) !important;
+  margin: 5px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.3) !important;
+  color: rgba(255, 255, 255, 1) !important;
+}
+
+.descricao {
+  color: rgba(255, 255, 255, 1);
+  text-align: center;
+  padding: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.pontuacao {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  color: rgba(237, 28, 36, 1);
+  font-weight: bold;
+  font-size: 30px;
+  text-align: center;
+  padding-top: 35px;
+  width: 88px;
+  height: 88px;
+  margin: 0 auto;
+  box-shadow: 0 0 0 10px rgba(243, 160, 32, 0.7);
+}
+
+.card {
+  background: rgba(0, 0, 0, 0.5) !important;
+  border: rgba(255, 255, 255, 0.7) !important;
+}
+
+.item-text-wrap {
+  padding: 5px;
+}
+
+.item-text-wrap h2 {
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+  color: rgba(255, 255, 255, 1);
+  margin-bottom: 40px;
+  margin-top: 20px;
+}
+
+.radio-icon {
+  color: rgba(255, 255, 255, 1);
+}
+
+.card-control {
+  position: fixed; /*posicao fixa */
+  float: left;
+  bottom: 0px;
+  width: 100%;
+  margin: 0px;
+  background-color: rgba(255, 255, 255, 1) !important;
+}
+
+.card-dicas {
+  margin-bottom: 120px;
+}
+
+.button-balanced, .button-stable {
+  border-radius: 15px;
+}
+
+.bar-stable {
+  background-color: rgb(110, 0, 0) !important;
+}
+
+.bar-stable * {
+  color: #FFF !important;
+}
+
+.logo {
+  width: 120px;
+  height: 120px;
+  position: fixed;
+  top: -23px;
+  right: 5px;
+  z-index: 1000;
+  background-image: url("../img/logo.png");
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+}
+
+.info {
+  width: 70%;
+  margin: 0px auto;
+  background-color: #FFF;
+  box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.5);
+  border-radius: 30px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.txt-vermelho {
+  color: red;
+}
+
+.txt-verde {
+  color: green;
+}
+
+.card-info > .item {
+  background-color: rgba(0, 0, 0, 0.6) !important;
+  text-align: center;
+  font-weight: bold;
+  margin: 5%;
+  border-radius: 6px;
+  padding: 20px;
+  letter-spacing: 2px;
+}
+
+.bar .title {
+  text-align: left !important;
+}

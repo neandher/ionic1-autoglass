@@ -1,14 +1,34 @@
 App\Entity\Pergunta:
     pergunta_1:
+        questionario: '@questionario_1'
+        resposta: '@resposta_4'
         descricao: Qual dos heróis não possui coração?
+        pontuacao: 25
+        dica: teste
     pergunta_2:
+        questionario: '@questionario_1'
+        resposta: '@resposta_8'
         descricao: Como se chama o cubo precioso do filme?
+        pontuacao: 25
+        dica: teste
     pergunta_3:
+        questionario: '@questionario_1'
+        resposta: '@resposta_12'
         descricao: Como se chama o diretor da SHIELD?
+        pontuacao: 25
+        dica: teste
     pergunta_4:
+        questionario: '@questionario_1'
+        resposta: '@resposta_20'
         descricao: Quais desses heróis não fazem parte da Marvel?
+        pontuacao: 25
+        dica: teste
     pergunta_5:
+        questionario: '@questionario_1'
+        resposta: '@resposta_21'
         descricao: Qual é o título do filme em inglês?
+        pontuacao: 25
+        dica: teste
 #    pergunta_6:
 #        descricao: Quais são os objetos que Thor, Capitão América, Gavião Arqueiro e Homem de Ferro usam?
 #    pergunta_7:

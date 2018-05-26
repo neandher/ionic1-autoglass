@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -15,6 +16,7 @@ class PerguntaResposta
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
+     * @Groups({"pergunta"})
      */
     private $id;
 
@@ -22,6 +24,7 @@ class PerguntaResposta
      * @var Pergunta
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\Pergunta", inversedBy="perguntaRespostas")
+     * @Groups({"pergunta"})
      * @ORM\JoinColumn(nullable=false)
      * @Assert\NotNull()
      */
@@ -31,17 +34,19 @@ class PerguntaResposta
      * @var Resposta
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\Resposta")
+     * @Groups({"pergunta"})
      * @ORM\JoinColumn(nullable=false)
      * @Assert\NotNull()
      */
     private $resposta;
 
     /**
-     * @var bool
+     * @var string
      *
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="string", length=10)
+     * @Groups({"pergunta"})
      */
-    private $correta = false;
+    private $letra;
 
     /**
      * @return mixed
@@ -98,20 +103,20 @@ class PerguntaResposta
     }
 
     /**
-     * @return bool
+     * @return string
      */
-    public function isCorreta(): bool
+    public function getLetra(): string
     {
-        return $this->correta;
+        return $this->letra;
     }
 
     /**
-     * @param bool $correta
+     * @param string $letra
      * @return PerguntaResposta
      */
-    public function setCorreta(bool $correta): PerguntaResposta
+    public function setLetra(string $letra): PerguntaResposta
     {
-        $this->correta = $correta;
+        $this->letra = $letra;
         return $this;
     }
 }
