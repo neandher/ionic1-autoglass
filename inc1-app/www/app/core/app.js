@@ -16,6 +16,11 @@ angular
     });
   })
 
+  .constant('AppConstants', {
+     api: 'http://localhost:8000/api',
+    //jwtKey: 'jwtToken',
+  })
+
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
 

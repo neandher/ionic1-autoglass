@@ -1,6 +1,5 @@
 (function(){
-  function QuestionariosService($http, $filter) {
-    var base = "http://localhost:8000/api";
+  function QuestionariosService($http, $filter, AppConstants) {
     var service = {
       questionario : {},
       questionarios : [],
@@ -13,14 +12,14 @@
 
     //funcoes
     function recuperar() {
-      return $http.get(base + '/questionarios.json')
+      return $http.get(AppConstants.api + '/questionarios.json')
         .then(function (resposta) {
           service.questionarios = resposta.data;
         });
     }
 
     function recuperarDetalhe(codigo) {
-      return $http.get(base + '/questionarios/'+codigo+'.json')
+      return $http.get(AppConstants.api + '/questionarios/'+codigo+'.json')
         .then(function (resposta) {
           //service.questionario = $filter('filter')(resposta.data, {codigo: codigo})[0];
           service.questionario = resposta.data;
@@ -28,7 +27,7 @@
     }
 
     function recuperarQuestoes(codigoQuestionario) {
-      return $http.get(base + '/questionarios/'+codigoQuestionario+'/perguntas.json')
+      return $http.get(AppConstants.api + '/questionarios/'+codigoQuestionario+'/perguntas.json')
         .then(function (resposta) {
           //service.questoes = $filter('filter')(resposta.data, {codigoQuestionario: codigoQuestionario});
           service.questoes = resposta.data;
