@@ -33,8 +33,6 @@ class TentativaResposta
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Resposta")
-     * @ORM\JoinColumn(nullable=false)
-     * @Assert\NotNull()
      */
     private $resposta;
 

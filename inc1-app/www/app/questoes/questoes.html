@@ -5,43 +5,46 @@
       <br/>(Até {{vm.questionario.pontuacaoTotal}} Pontos)
     </div>
 
-    <div class="pontuacao"> 999</div>
+    <div class="pontuacao"> {{vm.pontuacaoCorrente}}</div>
 
     <div class="card">
       <div class="item item-text-wrap">
         <h2>{{vm.questaoCorrente.descricao}}</h2>
         <ion-list>
-          <ion-radio ng-repeat="r in vm.questaoCorrente.perguntaRespostas" ng-model="x" ng-value="'{{r.resposta.id}}'">
-            {{r.letra}} - {{r.resposta.descricao}}
+          <ion-radio ng-repeat="pr in vm.questaoCorrente.perguntaRespostas track by pr.id" ng-model="vm.opcaoCorrente"
+                     ng-value="'{{pr.resposta.id}}'">
+            {{pr.letra}} - {{pr.resposta.descricao}}
           </ion-radio>
         </ion-list>
       </div>
     </div>
 
-    <div class="row info">
+    <div class="row info" ng-class="{'hide': vm.questaoCorrente.respondida}">
       <div class="col txt-verde">
-        <p>Acertou?<br/><b>+25</b></p>
+        <p>Acertou?<br/><b>+{{vm.questaoCorrente.pontuacao}}</b></p>
       </div>
       <div class="col txt-vermelho">
-        <p>Errou?<br/><b>-50</b></p>
+        <p>Errou?<br/><b>-{{vm.questaoCorrente.pontuacao*2}}</b></p>
       </div>
     </div>
 
-    <div class="card-info">
-      <div class="item item-text-wrap balanced-bg" style="color:white">
+    <div class="card-info msg-info" ng-class="{'hide': !vm.questaoCorrente.respondida}">
+      <div class="item item-text-wrap balanced-bg" ng-class="{'hide': !vm.questaoCorrente.acertou}" style="color:white">
         <i class="icon ion-checkmark-circled"></i> Você acertou!
       </div>
-      <div class="item item-text-wrap assertive-bg" style="color:white">
+      <div class="item item-text-wrap assertive-bg" ng-class="{'hide': vm.questaoCorrente.acertou}"
+           style="color:white">
         <i class="icon ion-close-circled"></i> Você errou!
       </div>
-      <div class="item item-text-wrap energized-bg" style="color:white">
+      <div class="item item-text-wrap energized-bg" ng-class="{'hide': !vm.questaoCorrente.pulou}"
+           style="color:white">
         <i class="icon ion-shuffle"></i> Você pulou!
       </div>
     </div>
 
-    <div class="card-info">
+    <div class="card-info" ng-class="{'hide': !vm.questionario.dicaAcionada || !vm.questaoCorrente.usouDica}">
       <div class="item item-text-wrap royal-bg" style="color:white">
-        <i class="icon ion-alert"></i> DICA: Vai brasil
+        <i class="icon ion-alert"></i> {{vm.questaoCorrente.dica}}
       </div>
     </div>
 
@@ -49,13 +52,15 @@
       <div class="item item-text-wrap">
         <div class="row">
           <div class="col">
-            <button class="button button-full button-stable ion-help">
+            <button class="button button-full button-stable ion-help" ng-click="vm.dica()"
+                    ng-class="{'disabled': vm.questaoCorrente.respondida || vm.questionario.dicaAcionada}">
               Dica
             </button>
           </div>
 
           <div class="col">
-            <button class="button button-full button-stable ion-close-round">
+            <button class="button button-full button-stable ion-close-round" ng-click="vm.eliminar()"
+                    ng-class="{'disabled': vm.questaoCorrente.respondida || vm.questionario.eliminarAcionado}">
               Eliminar
             </button>
           </div>
@@ -63,13 +68,15 @@
 
         <div class="row">
           <div class="col">
-            <button class="button button-full button-stable ion-log-out">
+            <button class="button button-full button-stable ion-log-out" ng-click="vm.pular()"
+                    ng-class="{'disabled': vm.questaoCorrente.respondida || vm.questionario.pularAcionado}">
               Pular
             </button>
           </div>
 
           <div class="col">
-            <button class="button button-full button-stable ion-plus-circled">
+            <button class="button button-full button-stable ion-plus-circled" ng-click="vm.dobrar()"
+                    ng-class="{'disabled': vm.questaoCorrente.respondida || vm.questionario.dobrarAcionado}">
               Dobrar
             </button>
           </div>
@@ -85,25 +92,29 @@
       <div class="row">
 
         <div class="col">
-          <button class="button button-full button-light icon ion-arrow-left-a">
+          <button class="button button-full button-energized icon ion-arrow-left-a"
+                  ng-class="{'disabled': !vm.verificaAnterior}" ng-click="vm.irAnterior()">
           </button>
         </div>
 
         <div class="col">
-          <button class="button button-full button-balanced icon ion-checkmark-circled">
+          <button class="button button-full button-assertive icon ion-checkmark-circled"
+                  ng-class="{'disabled': vm.questaoCorrente.respondida}" ng-click="vm.responder()">
           </button>
         </div>
 
-        <div class="col">
-          <button class="button button-full button-balanced">Finalizar</button>
+        <div class="col" ng-class="{'hide': !vm.verificaUltima || !vm.questaoCorrente.respondida}">
+          <button class="button button-full button-assertive" ng-click="vm.finalizar()">Finalizar</button>
         </div>
 
         <div class="col">
-          <button class="button button-full button-light icon ion-arrow-right-a" ng-click="proxima()">
+          <button class="button button-full button-energized icon ion-arrow-right-a"
+                  ng-class="{'disabled': !vm.verificaProxima}" ng-click="vm.irProxima()">
           </button>
         </div>
 
       </div>
     </div>
   </div>
+
 </ion-view>

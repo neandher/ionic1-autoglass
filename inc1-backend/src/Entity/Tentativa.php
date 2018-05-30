@@ -44,6 +44,15 @@ class Tentativa
     private $user;
 
     /**
+     * @var Questionario
+     *
+     * @ORM\ManyToOne(targetEntity="App\Entity\Questionario")
+     * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotNull()
+     */
+    private $questionario;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\TentativaResposta", mappedBy="tentativa", fetch="EXTRA_LAZY")
      */
     private $tentativaRespostas;
@@ -128,6 +137,24 @@ class Tentativa
     public function setUser(User $user): Tentativa
     {
         $this->user = $user;
+        return $this;
+    }
+
+    /**
+     * @return Questionario
+     */
+    public function getQuestionario(): Questionario
+    {
+        return $this->questionario;
+    }
+
+    /**
+     * @param Questionario $questionario
+     * @return Tentativa
+     */
+    public function setQuestionario(Questionario $questionario): Tentativa
+    {
+        $this->questionario = $questionario;
         return $this;
     }
 }

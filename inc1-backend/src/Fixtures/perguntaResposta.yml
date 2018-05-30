@@ -5,7 +5,7 @@ App\Entity\PerguntaResposta:
         letra: A
     pergunta_resposta_2:
         pergunta: '@pergunta_1'
-        resposta: '@resposta_3'
+        resposta: '@resposta_2'
         letra: B
     pergunta_resposta_3:
         pergunta: '@pergunta_1'

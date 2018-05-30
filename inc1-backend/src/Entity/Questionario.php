@@ -56,6 +56,14 @@ class Questionario
     private $pularAcionado = false;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(type="boolean")
+     * @Groups({"questionario"})
+     */
+    private $dobrarAcionado = false;
+
+    /**
      * @ORM\Column(type="boolean")
      * @Groups({"questionario"})
      */
@@ -201,6 +209,24 @@ class Questionario
             }
         }
 
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDobrarAcionado(): bool
+    {
+        return $this->dobrarAcionado;
+    }
+
+    /**
+     * @param bool $dobrarAcionado
+     * @return Questionario
+     */
+    public function setDobrarAcionado(bool $dobrarAcionado): Questionario
+    {
+        $this->dobrarAcionado = $dobrarAcionado;
         return $this;
     }
 }

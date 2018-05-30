@@ -67,6 +67,22 @@ class Pergunta
     private $acertou = false;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(type="boolean")
+     * @Groups({"pergunta"})
+     */
+    private $pulou = false;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(type="boolean")
+     * @Groups({"pergunta"})
+     */
+    private $usouDica = false;
+
+    /**
      * @var PerguntaResposta
      *
      * @ORM\OneToMany(targetEntity="App\Entity\PerguntaResposta", mappedBy="pergunta", fetch="EXTRA_LAZY")
@@ -254,6 +270,42 @@ class Pergunta
     public function setResposta(Resposta $resposta): Pergunta
     {
         $this->resposta = $resposta;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPulou(): bool
+    {
+        return $this->pulou;
+    }
+
+    /**
+     * @param bool $pulou
+     * @return Pergunta
+     */
+    public function setPulou(bool $pulou): Pergunta
+    {
+        $this->pulou = $pulou;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isUsouDica(): bool
+    {
+        return $this->usouDica;
+    }
+
+    /**
+     * @param bool $usouDica
+     * @return Pergunta
+     */
+    public function setUsouDica(bool $usouDica): Pergunta
+    {
+        $this->usouDica = $usouDica;
         return $this;
     }
 }

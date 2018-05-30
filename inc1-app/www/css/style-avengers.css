@@ -4,7 +4,7 @@ body, .scroll-content {
   background-size: 100%;
 }
 
-.item {
+.card .item {
   background: none;
   border: none;
 }
@@ -41,7 +41,7 @@ body, .scroll-content {
 }
 
 .card {
-  background: rgba(0, 0, 0, 0.5) !important;
+  background: rgba(0, 0, 0, 0.7) !important;
   border: rgba(255, 255, 255, 0.7) !important;
 }
 
@@ -75,7 +75,7 @@ body, .scroll-content {
   margin-bottom: 120px;
 }
 
-.button-balanced, .button-stable {
+.button-energized, .button-assertive, .button-stable {
   border-radius: 15px;
 }
 
@@ -120,7 +120,7 @@ body, .scroll-content {
 }
 
 .card-info > .item {
-  background-color: rgba(0, 0, 0, 0.6) !important;
+  /*background-color: rgba(0, 0, 0, 0.7);*/
   text-align: center;
   font-weight: bold;
   margin: 5%;
@@ -131,4 +131,13 @@ body, .scroll-content {
 
 .bar .title {
   text-align: left !important;
+}
+
+.button.button-stable {
+  color: rgba(237, 28, 36, 1) !important;
+}
+
+.card-dicas .button.disabled, .card-dicas .button[disabled] {
+  opacity: 1 !important;
+  color: #444 !important;
 }
