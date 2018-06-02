@@ -4,7 +4,7 @@ body, .scroll-content {
   background-size: 100%;
 }
 
-.card .item {
+.item {
   background: none;
   border: none;
 }
@@ -120,7 +120,7 @@ body, .scroll-content {
 }
 
 .card-info > .item {
-  /*background-color: rgba(0, 0, 0, 0.7);*/
+  background-color: rgba(0, 0, 0, 0.7);
   text-align: center;
   font-weight: bold;
   margin: 5%;

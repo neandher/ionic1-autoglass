@@ -21,7 +21,7 @@ class User implements UserInterface
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups({"user"})
+     * @Groups({"user", "tentativa"})
      */
     private $id;
 
@@ -29,7 +29,7 @@ class User implements UserInterface
      * @var string
      *
      * @ORM\Column(type="string")
-     * @Groups({"user"})
+     * @Groups({"user", "tentativa"})
      * @Assert\NotBlank()
      */
     private $name;

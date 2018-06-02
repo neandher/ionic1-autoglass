@@ -1,0 +1,5 @@
+App\Entity\Tentativa:
+    tentativa_1:
+        questionario: '@questionario_1'
+        user: '@user_1'
+        pontuacao: 250

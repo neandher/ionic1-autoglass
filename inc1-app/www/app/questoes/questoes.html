@@ -7,6 +7,7 @@
 
     <div class="pontuacao"> {{vm.pontuacaoCorrente}}</div>
 
+    <!-- OPÇÕES DE RESPOSTA -->
     <div class="card">
       <div class="item item-text-wrap">
         <h2>{{vm.questaoCorrente.descricao}}</h2>
@@ -18,8 +19,11 @@
         </ion-list>
       </div>
     </div>
+    <!-- FIM OPÇÕES DE RESPOSTA -->
 
-    <div class="row info" ng-class="{'hide': vm.questaoCorrente.respondida}">
+    <!-- PONTOS DA QUESTÃO -->
+    <div class="row info"
+         ng-class="{'hide': vm.tentativaRespostaCorrente.respondida || vm.tentativaRespostaCorrente.pulou}">
       <div class="col txt-verde">
         <p>Acertou?<br/><b>+{{vm.questaoCorrente.pontuacao}}</b></p>
       </div>
@@ -27,94 +31,100 @@
         <p>Errou?<br/><b>-{{vm.questaoCorrente.pontuacao*2}}</b></p>
       </div>
     </div>
+    <!-- FIM PONTOS DA QUESTÃO -->
 
-    <div class="card-info msg-info" ng-class="{'hide': !vm.questaoCorrente.respondida}">
-      <div class="item item-text-wrap balanced-bg" ng-class="{'hide': !vm.questaoCorrente.acertou}" style="color:white">
+    <!-- RESULTADO DA QUESTÃO -->
+    <div class="card-info msg-info"
+         ng-class="{'hide': !vm.tentativaRespostaCorrente.respondida && !vm.tentativaRespostaCorrente.pulou}">
+      <div class="item item-text-wrap balanced-bg"
+           ng-class="{'hide': vm.tentativaRespostaCorrente.pulou || !vm.tentativaRespostaCorrente.acertou}"
+           style="color:white">
         <i class="icon ion-checkmark-circled"></i> Você acertou!
       </div>
-      <div class="item item-text-wrap assertive-bg" ng-class="{'hide': vm.questaoCorrente.acertou}"
+      <div class="item item-text-wrap assertive-bg"
+           ng-class="{'hide': vm.tentativaRespostaCorrente.pulou || vm.tentativaRespostaCorrente.acertou}"
            style="color:white">
         <i class="icon ion-close-circled"></i> Você errou!
       </div>
-      <div class="item item-text-wrap energized-bg" ng-class="{'hide': !vm.questaoCorrente.pulou}"
+      <div class="item item-text-wrap energized-bg" ng-class="{'hide': !vm.tentativaRespostaCorrente.pulou}"
            style="color:white">
         <i class="icon ion-shuffle"></i> Você pulou!
       </div>
     </div>
+    <!-- FIM RESULTADO DA QUESTÃO -->
 
-    <div class="card-info" ng-class="{'hide': !vm.questionario.dicaAcionada || !vm.questaoCorrente.usouDica}">
+    <!-- EXIBE DICA -->
+    <div class="card-info" ng-class="{'hide': !vm.tentativa.dicaAcionada || !vm.tentativaRespostaCorrente.usouDica}">
       <div class="item item-text-wrap royal-bg" style="color:white">
-        <i class="icon ion-alert"></i> {{vm.questaoCorrente.dica}}
+        <i class="icon ion-alert"></i> Dica: {{vm.questaoCorrente.dica}}
       </div>
     </div>
+    <!-- FIM EXIBE DICA -->
 
+    <!-- RECURSOS -->
     <div class="card card-dicas">
       <div class="item item-text-wrap">
         <div class="row">
           <div class="col">
             <button class="button button-full button-stable ion-help" ng-click="vm.dica()"
-                    ng-class="{'disabled': vm.questaoCorrente.respondida || vm.questionario.dicaAcionada}">
+                    ng-class="{'disabled': (vm.tentativaRespostaCorrente.respondida || vm.tentativaRespostaCorrente.pulou ) || vm.tentativa.dicaAcionada}">
               Dica
             </button>
           </div>
-
           <div class="col">
             <button class="button button-full button-stable ion-close-round" ng-click="vm.eliminar()"
-                    ng-class="{'disabled': vm.questaoCorrente.respondida || vm.questionario.eliminarAcionado}">
+                    ng-class="{'disabled': (vm.tentativaRespostaCorrente.respondida || vm.tentativaRespostaCorrente.pulou ) || vm.tentativa.eliminarAcionado}">
               Eliminar
             </button>
           </div>
         </div>
-
         <div class="row">
           <div class="col">
             <button class="button button-full button-stable ion-log-out" ng-click="vm.pular()"
-                    ng-class="{'disabled': vm.questaoCorrente.respondida || vm.questionario.pularAcionado}">
+                    ng-class="{'disabled': (vm.tentativaRespostaCorrente.respondida || vm.tentativaRespostaCorrente.pulou ) || vm.tentativa.pularAcionado}">
               Pular
             </button>
           </div>
-
           <div class="col">
             <button class="button button-full button-stable ion-plus-circled" ng-click="vm.dobrar()"
-                    ng-class="{'disabled': vm.questaoCorrente.respondida || vm.questionario.dobrarAcionado}">
+                    ng-class="{'disabled': (vm.tentativaRespostaCorrente.respondida || vm.tentativaRespostaCorrente.pulou ) || vm.tentativa.dobrarAcionado}">
               Dobrar
             </button>
           </div>
         </div>
-
       </div>
     </div>
+    <!-- FIM RECURSOS -->
 
   </ion-content>
 
+  <!-- NAVEGAÇÃO -->
   <div class="card card-control">
     <div class="item item-text-wrap">
       <div class="row">
-
         <div class="col">
           <button class="button button-full button-energized icon ion-arrow-left-a"
                   ng-class="{'disabled': !vm.verificaAnterior}" ng-click="vm.irAnterior()">
           </button>
         </div>
-
         <div class="col">
           <button class="button button-full button-assertive icon ion-checkmark-circled"
-                  ng-class="{'disabled': vm.questaoCorrente.respondida}" ng-click="vm.responder()">
+                  ng-class="{'disabled': vm.tentativaRespostaCorrente.respondida || vm.tentativaRespostaCorrente.pulou}"
+                  ng-click="vm.responder()">
           </button>
         </div>
-
-        <div class="col" ng-class="{'hide': !vm.verificaUltima || !vm.questaoCorrente.respondida}">
+        <div class="col"
+             ng-class="{'hide': !vm.verificaUltima || (!vm.tentativaRespostaCorrente.respondida && !vm.tentativaRespostaCorrente.pulou)}">
           <button class="button button-full button-assertive" ng-click="vm.finalizar()">Finalizar</button>
         </div>
-
         <div class="col">
           <button class="button button-full button-energized icon ion-arrow-right-a"
                   ng-class="{'disabled': !vm.verificaProxima}" ng-click="vm.irProxima()">
           </button>
         </div>
-
       </div>
     </div>
   </div>
+  <!-- FIM NAVEGAÇÃO -->
 
 </ion-view>

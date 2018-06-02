@@ -12,7 +12,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ApiResource(attributes={
- *     "normalization_context"={"groups"={"pergunta"}}
+ *     "normalization_context"={"groups"={"pergunta"}},
+ *     "denormalization_context"={"groups"={"pergunta"}}
  * })
  * @ORM\Entity(repositoryClass="App\Repository\PerguntaRepository")
  */
@@ -22,12 +23,13 @@ class Pergunta
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"pergunta", "tentativa"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"pergunta"})
+     * @Groups({"pergunta", "tentativa"})
      * @Assert\NotBlank()
      */
     private $descricao;
@@ -51,41 +53,9 @@ class Pergunta
     private $dica;
 
     /**
-     * @var bool
-     *
-     * @ORM\Column(type="boolean")
-     * @Groups({"pergunta"})
-     */
-    private $respondida = false;
-
-    /**
-     * @var bool
-     *
-     * @ORM\Column(type="boolean")
-     * @Groups({"pergunta"})
-     */
-    private $acertou = false;
-
-    /**
-     * @var bool
-     *
-     * @ORM\Column(type="boolean")
-     * @Groups({"pergunta"})
-     */
-    private $pulou = false;
-
-    /**
-     * @var bool
-     *
-     * @ORM\Column(type="boolean")
-     * @Groups({"pergunta"})
-     */
-    private $usouDica = false;
-
-    /**
      * @var PerguntaResposta
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\PerguntaResposta", mappedBy="pergunta", fetch="EXTRA_LAZY")
+     * @ORM\OneToMany(targetEntity="App\Entity\PerguntaResposta", mappedBy="pergunta", cascade={"persist"})
      * @Groups({"pergunta"})
      * @Assert\Count(min="1")
      */
@@ -202,42 +172,6 @@ class Pergunta
     }
 
     /**
-     * @return bool
-     */
-    public function isRespondida(): bool
-    {
-        return $this->respondida;
-    }
-
-    /**
-     * @param bool $respondida
-     * @return Pergunta
-     */
-    public function setRespondida(bool $respondida): Pergunta
-    {
-        $this->respondida = $respondida;
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isAcertou(): bool
-    {
-        return $this->acertou;
-    }
-
-    /**
-     * @param bool $acertou
-     * @return Pergunta
-     */
-    public function setAcertou(bool $acertou): Pergunta
-    {
-        $this->acertou = $acertou;
-        return $this;
-    }
-
-    /**
      * @return Questionario
      */
     public function getQuestionario(): Questionario
@@ -273,39 +207,4 @@ class Pergunta
         return $this;
     }
 
-    /**
-     * @return bool
-     */
-    public function isPulou(): bool
-    {
-        return $this->pulou;
-    }
-
-    /**
-     * @param bool $pulou
-     * @return Pergunta
-     */
-    public function setPulou(bool $pulou): Pergunta
-    {
-        $this->pulou = $pulou;
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isUsouDica(): bool
-    {
-        return $this->usouDica;
-    }
-
-    /**
-     * @param bool $usouDica
-     * @return Pergunta
-     */
-    public function setUsouDica(bool $usouDica): Pergunta
-    {
-        $this->usouDica = $usouDica;
-        return $this;
-    }
 }

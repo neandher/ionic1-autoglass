@@ -17,8 +17,8 @@ angular
   })
 
   .constant('AppConstants', {
-     api: 'http://localhost:8000/api',
-    //jwtKey: 'jwtToken',
+    api: 'http://localhost:8000/api',
+    userId: 2,
   })
 
   .config(function ($stateProvider, $urlRouterProvider) {

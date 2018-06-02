@@ -3,13 +3,18 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ApiResource()
+ * @ApiResource(attributes={
+ *     "normalization_context"={"groups"={"tentativa"}},
+ *     "denormalization_context"={"groups"={"tentativa"}}
+ * })
  * @ORM\Entity(repositoryClass="App\Repository\TentativaRepository")
  */
 class Tentativa
@@ -18,27 +23,64 @@ class Tentativa
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"tentativa"})
      */
     private $id;
 
     /**
-     * @ORM\Column(type="datetime")
-     * @Assert\DateTime()
-     * @Assert\NotNull()
+     * @var bool
+     *
+     * @ORM\Column(type="boolean")
+     * @Groups({"tentativa"})
      */
-    private $tempoInicio;
+    private $dicaAcionada = false;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
-     * @Assert\DateTime()
+     * @var bool
+     *
+     * @ORM\Column(type="boolean")
+     * @Groups({"tentativa"})
      */
-    private $tempoFim;
+    private $eliminarAcionado = false;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(type="boolean")
+     * @Groups({"tentativa"})
+     */
+    private $pularAcionado = false;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(type="boolean")
+     * @Groups({"tentativa"})
+     */
+    private $dobrarAcionado = false;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(type="boolean")
+     * @Groups({"tentativa"})
+     */
+    private $desafioAcionado = false;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(type="integer")
+     * @Groups({"tentativa"})
+     */
+    private $pontuacao;
 
     /**
      * @var User
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\User")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"tentativa"})
      * @Assert\NotNull()
      */
     private $user;
@@ -48,12 +90,15 @@ class Tentativa
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\Questionario")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"tentativa"})
      * @Assert\NotNull()
      */
     private $questionario;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\TentativaResposta", mappedBy="tentativa", fetch="EXTRA_LAZY")
+     * @ORM\OneToMany(targetEntity="App\Entity\TentativaResposta", mappedBy="tentativa", cascade={"persist"})
+     * @Groups({"tentativa"})
+     * @ApiSubresource()
      */
     private $tentativaRespostas;
 
@@ -67,27 +112,111 @@ class Tentativa
         return $this->id;
     }
 
-    public function getTempoInicio(): ?\DateTimeInterface
+    /**
+     * @return bool
+     */
+    public function isDicaAcionada(): bool
     {
-        return $this->tempoInicio;
+        return $this->dicaAcionada;
     }
 
-    public function setTempoInicio(\DateTimeInterface $tempoInicio): self
+    /**
+     * @param bool $dicaAcionada
+     * @return Tentativa
+     */
+    public function setDicaAcionada(bool $dicaAcionada): Tentativa
     {
-        $this->tempoInicio = $tempoInicio;
-
+        $this->dicaAcionada = $dicaAcionada;
         return $this;
     }
 
-    public function getTempoFim(): ?\DateTimeInterface
+    /**
+     * @return bool
+     */
+    public function isEliminarAcionado(): bool
     {
-        return $this->tempoFim;
+        return $this->eliminarAcionado;
     }
 
-    public function setTempoFim(?\DateTimeInterface $tempoFim): self
+    /**
+     * @param bool $eliminarAcionado
+     * @return Tentativa
+     */
+    public function setEliminarAcionado(bool $eliminarAcionado): Tentativa
     {
-        $this->tempoFim = $tempoFim;
+        $this->eliminarAcionado = $eliminarAcionado;
+        return $this;
+    }
 
+    /**
+     * @return bool
+     */
+    public function isPularAcionado(): bool
+    {
+        return $this->pularAcionado;
+    }
+
+    /**
+     * @param bool $pularAcionado
+     * @return Tentativa
+     */
+    public function setPularAcionado(bool $pularAcionado): Tentativa
+    {
+        $this->pularAcionado = $pularAcionado;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDobrarAcionado(): bool
+    {
+        return $this->dobrarAcionado;
+    }
+
+    /**
+     * @param bool $dobrarAcionado
+     * @return Tentativa
+     */
+    public function setDobrarAcionado(bool $dobrarAcionado): Tentativa
+    {
+        $this->dobrarAcionado = $dobrarAcionado;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDesafioAcionado(): bool
+    {
+        return $this->desafioAcionado;
+    }
+
+    /**
+     * @param bool $desafioAcionado
+     * @return Tentativa
+     */
+    public function setDesafioAcionado(bool $desafioAcionado): Tentativa
+    {
+        $this->desafioAcionado = $desafioAcionado;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPontuacao(): int
+    {
+        return $this->pontuacao;
+    }
+
+    /**
+     * @param int $pontuacao
+     * @return Tentativa
+     */
+    public function setPontuacao(int $pontuacao): Tentativa
+    {
+        $this->pontuacao = $pontuacao;
         return $this;
     }
 

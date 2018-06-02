@@ -17,13 +17,13 @@ class Resposta
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups({"pergunta"})
+     * @Groups({"pergunta", "tentativa"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"pergunta"})
+     * @Groups({"pergunta", "tentativa"})
      * @Assert\NotBlank()
      */
     private $descricao;

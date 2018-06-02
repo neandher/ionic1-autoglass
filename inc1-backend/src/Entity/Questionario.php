@@ -11,7 +11,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(attributes={
- *     "normalization_context"={"groups"={"questionario"}}
+ *     "normalization_context"={"groups"={"questionario"}},
+ *     "denormalization_context"={"groups"={"questionario"}}
  * })
  * @ORM\Entity(repositoryClass="App\Repository\QuestionarioRepository")
  */
@@ -21,13 +22,13 @@ class Questionario
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups({"questionario","pergunta"})
+     * @Groups({"questionario","pergunta", "tentativa"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"questionario","pergunta"})
+     * @Groups({"questionario","pergunta", "tentativa"})
      */
     private $descricao;
 
@@ -36,38 +37,6 @@ class Questionario
      * @Groups({"questionario"})
      */
     private $pontuacaoTotal;
-
-    /**
-     * @ORM\Column(type="boolean")
-     * @Groups({"questionario"})
-     */
-    private $dicaAcionada = false;
-
-    /**
-     * @ORM\Column(type="boolean")
-     * @Groups({"questionario"})
-     */
-    private $eliminarAcionado = false;
-
-    /**
-     * @ORM\Column(type="boolean")
-     * @Groups({"questionario"})
-     */
-    private $pularAcionado = false;
-
-    /**
-     * @var bool
-     *
-     * @ORM\Column(type="boolean")
-     * @Groups({"questionario"})
-     */
-    private $dobrarAcionado = false;
-
-    /**
-     * @ORM\Column(type="boolean")
-     * @Groups({"questionario"})
-     */
-    private $desafioAcionado = false;
 
     /**
      * @ORM\Column(type="integer")
@@ -117,54 +86,6 @@ class Questionario
     public function setPontuacaoTotal(int $pontuacaoTotal): self
     {
         $this->pontuacaoTotal = $pontuacaoTotal;
-
-        return $this;
-    }
-
-    public function getDicaAcionada(): ?bool
-    {
-        return $this->dicaAcionada;
-    }
-
-    public function setDicaAcionada(bool $dicaAcionada): self
-    {
-        $this->dicaAcionada = $dicaAcionada;
-
-        return $this;
-    }
-
-    public function getEliminarAcionado(): ?bool
-    {
-        return $this->eliminarAcionado;
-    }
-
-    public function setEliminarAcionado(bool $eliminarAcionado): self
-    {
-        $this->eliminarAcionado = $eliminarAcionado;
-
-        return $this;
-    }
-
-    public function getPularAcionado(): ?bool
-    {
-        return $this->pularAcionado;
-    }
-
-    public function setPularAcionado(bool $pularAcionado): self
-    {
-        $this->pularAcionado = $pularAcionado;
-
-        return $this;
-    }
-
-    public function getDesafioAcionado(): ?bool
-    {
-        return $this->desafioAcionado;
-    }
-
-    public function setDesafioAcionado(bool $desafioAcionado): self
-    {
-        $this->desafioAcionado = $desafioAcionado;
 
         return $this;
     }
